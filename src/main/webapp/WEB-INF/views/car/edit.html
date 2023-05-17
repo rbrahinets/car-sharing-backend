@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit car</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/cars/{id}(id=${car.getId_car()})}" th:object="${car}">
+    <label for="brand">Enter brand: </label>
+    <input type="text" th:field="*{brand}" id="brand">
+    <br/>
+    <label for="model">Enter model: </label>
+    <input type="text" th:field="*{model}" id="model">
+    <br/>
+    <label for="year">Enter year: </label>
+    <input type="text" th:field="*{issue_date}" id="year">
+    <br/>
+    <label for="price">Enter price: </label>
+    <input type="text" th:field="*{price}" id="price">
+    <br/>
+    <label for="category">Enter category: </label>
+    <input type="text" th:field="*{id_category}" id="category">
+    <br/>
+    <label for="plate">Enter plate: </label>
+    <input type="text" th:field="*{plate}" id="plate">
+    <br/>
+    <label for="image">Set image: </label>
+    <input type="text" th:field="*{URLImage}" id="image">
+    <br/>
+    <label for="admin">Set admin: </label>
+    <input type="text" th:field="*{id_admin}" id="admin">
+    <br/>
+  <input type="submit" value="Update">
+</form>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All orders</title>
+</head>
+<body>
+<div th:each = "orderForm : ${orders}">
+  <a th:href="@{/car/{id}(id=${car.getId_car()})}" th:text = "${car.getModel()}">user</a>
+</div>
+</body>
+</html>

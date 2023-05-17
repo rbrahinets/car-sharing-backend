@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car</title>
+</head>
+<body>
+<a th:text="${car.getBrand()}">VALUE</a>
+<br/>
+<a th:text="${car.getModel()}">VALUE</a>
+<br/>
+<a th:text="${car.getIssue_date()}">VALUE</a>
+<br/>
+<a th:text="${car.getPrice()}">VALUE</a>
+<br/>
+<a th:text="${car.getId_category()}">VALUE</a>
+<br/>
+<a th:text="${car.getPlate()}">VALUE</a>
+<br/>
+<img src="${car.getURLImage()}">
+<br/>
+</body>
+</html>
