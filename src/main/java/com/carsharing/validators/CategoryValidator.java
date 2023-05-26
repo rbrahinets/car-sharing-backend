@@ -30,18 +30,27 @@ public class CategoryValidator {
         }
     }
 
+    public void validate(String name, List<Category> categories) {
+        if (!getNames(categories).contains(name)) {
+            throw new NotFoundException("Category not found");
+        }
+    }
+
     private static boolean isNameInvalid(String name) {
         return name == null
             || name.isBlank();
     }
 
     private boolean isNameAlreadyExist(String name, List<Category> categories) {
+        return getNames(categories).contains(name);
+    }
+
+    private static List<String> getNames(List<Category> categories) {
         List<String> names = new ArrayList<>();
 
         for (Category category : categories) {
             names.add(category.getName());
         }
-
-        return names.contains(name);
+        return names;
     }
 }
