@@ -19,7 +19,7 @@ public class AdminValidator {
             throw new ValidationException("E-mail is invalid");
         } else if (isEmailAlreadyInUse(admin.getEmail(), admins)) {
             throw new ValidationException("E-mail is already in use");
-        } else if (isLastPasswordInvalid(admin.getPassword())) {
+        } else if (isPasswordInvalid(admin.getPassword())) {
             throw new ValidationException("Password is invalid");
         }
     }
