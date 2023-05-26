@@ -1,4 +1,4 @@
-package com.carsharing.DAO;
+package com.carsharing.repositories;
 
 import com.carsharing.models.Client;
 import org.springframework.jdbc.core.RowMapper;

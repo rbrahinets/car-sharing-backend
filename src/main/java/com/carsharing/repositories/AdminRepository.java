@@ -1,6 +1,6 @@
-package com.carsharing.DAO;
+package com.carsharing.repositories;
 
-import com.carsharing.models.OrderForm;
+import com.carsharing.models.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -8,16 +8,16 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class OrderFormDAO {
-
+public class AdminRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public OrderFormDAO(JdbcTemplate jdbcTemplate) {
+    public AdminRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<OrderForm> index(){
-        return jdbcTemplate.query("SELECT * FROM order_form", new OrderFormMapper());
+    public List<Admin> index(){
+        return jdbcTemplate.query("SELECT * FROM admin", new AdminMapper());
     }
+
 }

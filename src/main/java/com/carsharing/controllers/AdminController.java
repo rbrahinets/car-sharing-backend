@@ -1,9 +1,9 @@
 package com.carsharing.controllers;
 
-import com.carsharing.DAO.AdminDAO;
-import com.carsharing.DAO.CarDAO;
-import com.carsharing.DAO.ClientDAO;
-import com.carsharing.DAO.OrderFormDAO;
+import com.carsharing.repositories.AdminRepository;
+import com.carsharing.repositories.CarRepository;
+import com.carsharing.repositories.ClientRepository;
+import com.carsharing.repositories.OrderFormRepository;
 import com.carsharing.models.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,29 +14,29 @@ import java.sql.SQLException;
 
 @Controller
 public class AdminController {
-    private AdminDAO adminDAO;
-    private ClientDAO clientDAO;
-    private CarDAO carDAO;
+    private AdminRepository adminRepository;
+    private ClientRepository clientRepository;
+    private CarRepository carRepository;
 
-    private OrderFormDAO orderFormDAO;
+    private OrderFormRepository orderFormRepository;
     @Autowired
-    public AdminController(AdminDAO adminDAO, ClientDAO clientDAO,
-                           CarDAO carDAO, OrderFormDAO orderFormDAO) {
-        this.adminDAO = adminDAO;
-        this.clientDAO = clientDAO;
-        this.carDAO = carDAO;
-        this.orderFormDAO = orderFormDAO;
+    public AdminController(AdminRepository adminRepository, ClientRepository clientRepository,
+                           CarRepository carRepository, OrderFormRepository orderFormRepository) {
+        this.adminRepository = adminRepository;
+        this.clientRepository = clientRepository;
+        this.carRepository = carRepository;
+        this.orderFormRepository = orderFormRepository;
     }
 
     @GetMapping("/clients")
     public String showAllClients(Model model) throws SQLException {
-        model.addAttribute("clients", clientDAO.index());
+        model.addAttribute("clients", clientRepository.index());
         return "client/index";
     }
 
     @GetMapping("/cars")
     public String showAllCars(Model model) throws SQLException {
-        model.addAttribute("cars", carDAO.index());
+        model.addAttribute("cars", carRepository.index());
         return "car/index";
     }
 
@@ -48,31 +48,31 @@ public class AdminController {
 
     @PostMapping("/cars")
     public String saveToDB(@ModelAttribute("NewCar") Car car){
-        carDAO.addCar(car);
+        carRepository.addCar(car);
         return "redirect:/cars";
     }
 
     @GetMapping("/orders")
     public String showAllOrders(Model model){
-        model.addAttribute("orders", orderFormDAO.index());
+        model.addAttribute("orders", orderFormRepository.index());
         return "order/index";
     }
 
     @GetMapping("/cars/{id}/edit")
     public String editCar(@PathVariable("id") int id, Model model) throws SQLException {
-        model.addAttribute("car", carDAO.show(id));
+        model.addAttribute("car", carRepository.show(id));
         return "car/edit";
     }
 
     @PatchMapping("/cars/{id}")
     public String updateBook(@PathVariable("id") int id, @ModelAttribute("car") Car car){
-        carDAO.updateCar(id, car);
+        carRepository.updateCar(id, car);
         return "redirect:/cars";
     }
 
     @DeleteMapping("/cars/{id}")
     public String deleteBook(@PathVariable("id") int id){
-        carDAO.deleteCar(id);
+        carRepository.deleteCar(id);
         return "redirect:/cars";
     }
 

@@ -1,4 +1,4 @@
-package com.carsharing.DAO;
+package com.carsharing.repositories;
 
 import com.carsharing.models.Client;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +9,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Component
-public class ClientDAO {
+public class ClientRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public ClientDAO(JdbcTemplate jdbcTemplate) {
+    public ClientRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

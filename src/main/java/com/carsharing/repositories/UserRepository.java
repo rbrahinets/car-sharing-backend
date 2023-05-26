@@ -1,6 +1,5 @@
 package com.carsharing.repositories;
 
-import com.carsharing.DAO.UserMapper;
 import com.carsharing.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

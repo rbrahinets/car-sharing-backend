@@ -1,6 +1,6 @@
 package com.carsharing.controllers;
 
-import com.carsharing.DAO.CarDAO;
+import com.carsharing.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,22 +14,22 @@ import java.sql.SQLException;
 @RequestMapping("/car")
 public class CarController {
 
-    private CarDAO carDAO;
+    private CarRepository carRepository;
 
     @Autowired
-    public CarController(CarDAO carDAO) {
-        this.carDAO = carDAO;
+    public CarController(CarRepository carRepository) {
+        this.carRepository = carRepository;
     }
 
     @GetMapping()
     public String index(Model model) throws SQLException {
-        model.addAttribute("cars", carDAO.index());
+        model.addAttribute("cars", carRepository.index());
         return "car/index";
     }
 
     @GetMapping("{id}")
     public String show(@PathVariable("id") int id, Model model) throws SQLException {
-        model.addAttribute("car", carDAO.show(id));
+        model.addAttribute("car", carRepository.show(id));
         return "car/show";
     }
 
