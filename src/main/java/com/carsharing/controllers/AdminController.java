@@ -1,79 +1,45 @@
 package com.carsharing.controllers;
 
-import com.carsharing.repositories.AdminRepository;
-import com.carsharing.repositories.CarRepository;
-import com.carsharing.repositories.ClientRepository;
-import com.carsharing.repositories.OrderFormRepository;
-import com.carsharing.models.Car;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import com.carsharing.models.Admin;
+import com.carsharing.services.AdminService;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
+import java.util.List;
 
-@Controller
+@RestController
+@CrossOrigin
+@RequestMapping("/api/v1/admins")
 public class AdminController {
-    private AdminRepository adminRepository;
-    private ClientRepository clientRepository;
-    private CarRepository carRepository;
+    private final AdminService adminService;
 
-    private OrderFormRepository orderFormRepository;
-    @Autowired
-    public AdminController(AdminRepository adminRepository, ClientRepository clientRepository,
-                           CarRepository carRepository, OrderFormRepository orderFormRepository) {
-        this.adminRepository = adminRepository;
-        this.clientRepository = clientRepository;
-        this.carRepository = carRepository;
-        this.orderFormRepository = orderFormRepository;
+    public AdminController(
+        AdminService adminService
+    ) {
+        this.adminService = adminService;
     }
 
-    @GetMapping("/clients")
-    public String showAllClients(Model model) throws SQLException {
-        model.addAttribute("clients", clientRepository.index());
-        return "client/index";
+    @GetMapping("/")
+    public List<Admin> findAll() {
+        return adminService.findAll();
     }
 
-    @GetMapping("/cars")
-    public String showAllCars(Model model) throws SQLException {
-        model.addAttribute("cars", carRepository.index());
-        return "car/index";
+    @GetMapping("/{id}")
+    public Admin findById(@PathVariable Long id) {
+        return adminService.findById(id);
     }
 
-    @GetMapping("/cars/new")
-    public String addNewCar(Model model){
-        model.addAttribute("NewCar", new Car());
-        return "car/new";
+    @PostMapping("/")
+    public Admin save(@RequestBody Admin admin) {
+        return adminService.save(admin);
     }
 
-    @PostMapping("/cars")
-    public String saveToDB(@ModelAttribute("NewCar") Car car){
-        carRepository.addCar(car);
-        return "redirect:/cars";
+    @PutMapping("/{id}")
+    public Admin update(@RequestBody Admin admin, @PathVariable Long id) {
+        return adminService.update(admin, id);
     }
 
-    @GetMapping("/orders")
-    public String showAllOrders(Model model){
-        model.addAttribute("orders", orderFormRepository.index());
-        return "order/index";
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id) {
+        adminService.delete(new Admin(id));
     }
-
-    @GetMapping("/cars/{id}/edit")
-    public String editCar(@PathVariable("id") int id, Model model) throws SQLException {
-        model.addAttribute("car", carRepository.show(id));
-        return "car/edit";
-    }
-
-    @PatchMapping("/cars/{id}")
-    public String updateBook(@PathVariable("id") int id, @ModelAttribute("car") Car car){
-        carRepository.updateCar(id, car);
-        return "redirect:/cars";
-    }
-
-    @DeleteMapping("/cars/{id}")
-    public String deleteBook(@PathVariable("id") int id){
-        carRepository.deleteCar(id);
-        return "redirect:/cars";
-    }
-
 }
