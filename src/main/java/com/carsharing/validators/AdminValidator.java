@@ -11,15 +11,15 @@ import java.util.List;
 @Component
 public class AdminValidator {
     public void validate(Admin admin, List<Admin> admins) {
-        if (isFirstNameInvalid(admin)) {
+        if (isFirstNameInvalid(admin.getFirstName())) {
             throw new ValidationException("First name is invalid");
-        } else if (isLastNameInvalid(admin)) {
+        } else if (isLastNameInvalid(admin.getLastName())) {
             throw new ValidationException("Last name is invalid");
         } else if (isInvalidEmail(admin.getEmail())) {
             throw new ValidationException("E-mail is invalid");
         } else if (isEmailAlreadyInUse(admin.getEmail(), admins)) {
             throw new ValidationException("E-mail is already in use");
-        } else if (isLastPasswordInvalid(admin)) {
+        } else if (isLastPasswordInvalid(admin.getPassword())) {
             throw new ValidationException("Password is invalid");
         }
     }
@@ -44,14 +44,14 @@ public class AdminValidator {
         }
     }
 
-    private static boolean isFirstNameInvalid(Admin admin) {
-        return admin.getFirstName() == null
-            || admin.getFirstName().isBlank();
+    private static boolean isFirstNameInvalid(String firstName) {
+        return firstName == null
+            || firstName.isBlank();
     }
 
-    private static boolean isLastNameInvalid(Admin admin) {
-        return admin.getLastName() == null
-            || admin.getLastName().isBlank();
+    private static boolean isLastNameInvalid(String lastName) {
+        return lastName == null
+            || lastName.isBlank();
     }
 
     private boolean isInvalidEmail(String email) {
@@ -71,8 +71,8 @@ public class AdminValidator {
         return emails.contains(email);
     }
 
-    private static boolean isLastPasswordInvalid(Admin admin) {
-        return admin.getPassword() == null
-            || admin.getPassword().length == 0;
+    private static boolean isLastPasswordInvalid(char[] password) {
+        return password == null
+            || password.length == 0;
     }
 }
