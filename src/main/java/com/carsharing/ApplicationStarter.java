@@ -1,7 +1,7 @@
 package com.carsharing;
 
 import com.carsharing.configs.DatabaseConfig;
-import com.carsharing.utility.ImageDatabaseUtility;
+import com.carsharing.utility.ImageUtility;
 import org.flywaydb.core.Flyway;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +36,7 @@ public class ApplicationStarter {
                 )).getFile()
         );
 
-        ImageDatabaseUtility utility = new ImageDatabaseUtility();
+        ImageUtility utility = new ImageUtility();
         try {
             utility.setImagesToDatabase(imageNames);
         } catch (Exception e) {
