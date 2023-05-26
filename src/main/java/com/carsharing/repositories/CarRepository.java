@@ -87,4 +87,14 @@ public class CarRepository {
             )
             .stream().findAny();
     }
+
+    public void saveImageForCar(byte[] image, long id) {
+        jdbcTemplate.update(
+            "UPDATE `car` SET image=:image WHERE id=:id",
+            Map.ofEntries(
+                Map.entry("image", image),
+                Map.entry("id", id)
+            )
+        );
+    }
 }
