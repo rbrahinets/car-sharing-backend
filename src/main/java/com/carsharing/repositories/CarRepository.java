@@ -37,7 +37,7 @@ public class CarRepository {
 
     public void save(Car car) {
         jdbcTemplate.update(
-            "INSERT INTO `car` (brand, model, year, price, id_category, plate, image)"
+            "INSERT INTO `car` (brand, model, year, price, id_category, plate, available, image)"
                 + " VALUES (:brand, :model, :year, :price, :id_category, :plate, :available, :image)",
             Map.ofEntries(
                 Map.entry("brand", car.getBrand()),
@@ -46,7 +46,7 @@ public class CarRepository {
                 Map.entry("price", car.getPrice()),
                 Map.entry("id_category", car.getIdCategory()),
                 Map.entry("plate", car.getPlate()),
-                Map.entry("available", car.isAvailable()),
+                Map.entry("available", car.isAvailable() ? 1 : 0),
                 Map.entry("image", car.getImage())
             )
         );
@@ -56,7 +56,7 @@ public class CarRepository {
         jdbcTemplate.update(
             "UPDATE `car`" +
                 " SET brand=:brand, model=:model, year=:year, price=:price," +
-                " id_category=:id_category, plate:=plate, available=:avaliable, image:=image" +
+                " id_category=:id_category, plate:=plate, available=:available, image:=image" +
                 " WHERE id=:id",
             Map.ofEntries(
                 Map.entry("brand", car.getBrand()),
@@ -65,7 +65,7 @@ public class CarRepository {
                 Map.entry("price", car.getPrice()),
                 Map.entry("id_category", car.getIdCategory()),
                 Map.entry("plate", car.getPlate()),
-                Map.entry("available", car.isAvailable()),
+                Map.entry("available", car.isAvailable() ? 1 : 0),
                 Map.entry("image", car.getImage()),
                 Map.entry("id", id)
             )

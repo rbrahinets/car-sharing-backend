@@ -38,7 +38,7 @@ public class OrderRepository {
     public void save(Order order) {
         jdbcTemplate.update(
             "INSERT INTO `order` (id_car, email, amount_price, rental_date, return_date, id_status)"
-                + "VALUES (:first_name, :email, :amount_price, :rental_date, :return_date, :id_status)",
+                + "VALUES (:id_car, :email, :amount_price, :rental_date, :return_date, :id_status)",
             Map.ofEntries(
                 Map.entry("id_car", order.getIdCar()),
                 Map.entry("email", order.getEmail()),
