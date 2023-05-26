@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 public class CarValidator {
-    public void validate(Car car, List<Car> cars, List<Category> categories) {
+    public void validate(Car car, List<Car> cars, List<Category> categories, boolean isSaveMethod) {
         if (isBrandInvalid(car.getBrand())) {
             throw new ValidationException("Brand is invalid");
         } else if (isModelInvalid(car.getModel())) {
@@ -25,7 +25,7 @@ public class CarValidator {
             throw new ValidationException("Id of category is invalid");
         } else if (isInvalidPlate(car.getPlate())) {
             throw new ValidationException("Plate is invalid");
-        } else if (isPlateAlreadyInUse(car.getPlate(), cars)) {
+        } else if (isSaveMethod && isPlateAlreadyInUse(car.getPlate(), cars)) {
             throw new ValidationException("Plate is already in use");
         } else if (isImageInvalid(car.getImage())) {
             throw new ValidationException("Image is invalid");

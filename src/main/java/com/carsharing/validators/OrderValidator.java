@@ -13,7 +13,7 @@ import java.util.List;
 
 @Component
 public class OrderValidator {
-    public void validate(Order order, List<Order> orders, List<Car> cars, List<Status> statuses) {
+    public void validate(Order order, List<Car> cars, List<Status> statuses) {
         if (isInvalidIdCar(order.getIdCar(), cars)) {
             throw new ValidationException("Id of car is invalid");
         } else if (isInvalidEmail(order.getEmail())) {

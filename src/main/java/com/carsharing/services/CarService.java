@@ -37,7 +37,8 @@ public class CarService {
         carValidator.validate(
             car,
             carRepository.findAll(),
-            categoryRepository.findAll()
+            categoryRepository.findAll(),
+            true
         );
         carRepository.save(car);
         return car;
@@ -48,7 +49,8 @@ public class CarService {
         carValidator.validate(
             car,
             carRepository.findAll(),
-            categoryRepository.findAll()
+            categoryRepository.findAll(),
+            false
         );
         carRepository.update(id, car);
         return car;
