@@ -75,7 +75,7 @@ public class CarValidator {
             ids.add(category.getId());
         }
 
-        return ids.contains(id);
+        return !ids.contains(id);
     }
 
     private boolean isInvalidPlate(String plate) {

@@ -18,8 +18,6 @@ public class OrderValidator {
             throw new ValidationException("Id of car is invalid");
         } else if (isInvalidEmail(order.getEmail())) {
             throw new ValidationException("E-mail is invalid");
-        } else if (isEmailNotExists(order.getEmail(), orders)) {
-            throw new ValidationException("E-mail is already in use");
         } else if (isAmountPriceInvalid(order.getAmountPrice())) {
             throw new ValidationException("Amount price is invalid");
         } else if (isRentalDateInvalid(order.getRentalDate())) {
@@ -56,7 +54,7 @@ public class OrderValidator {
             ids.add(car.getId());
         }
 
-        return ids.contains(id);
+        return !ids.contains(id);
     }
 
     private boolean isInvalidEmail(String email) {
@@ -65,10 +63,6 @@ public class OrderValidator {
             || email.startsWith("@")
             || email.endsWith("@.com")
             || !email.endsWith(".com");
-    }
-
-    private boolean isEmailNotExists(String email, List<Order> orders) {
-        return !getEmails(orders).contains(email);
     }
 
     private static boolean isAmountPriceInvalid(double amountPrice) {
@@ -91,7 +85,7 @@ public class OrderValidator {
             ids.add(status.getId());
         }
 
-        return ids.contains(id);
+        return !ids.contains(id);
     }
 
     private static List<String> getEmails(List<Order> orders) {
