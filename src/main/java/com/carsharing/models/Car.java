@@ -47,36 +47,72 @@ public class Car {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getBrand() {
         return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getModel() {
         return model;
     }
 
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public int getYear() {
         return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public double getPrice() {
         return price;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public long getIdCategory() {
         return idCategory;
+    }
+
+    public void setIdCategory(long idCategory) {
+        this.idCategory = idCategory;
     }
 
     public String getPlate() {
         return plate;
     }
 
+    public void setPlate(String plate) {
+        this.plate = plate;
+    }
+
     public boolean isAvailable() {
         return available;
     }
 
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
     public byte[] getImage() {
         return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Override

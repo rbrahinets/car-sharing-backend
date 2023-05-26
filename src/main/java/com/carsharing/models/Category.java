@@ -25,17 +25,25 @@ public class Category {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category admin = (Category) o;
-        return id == admin.id
-            && Objects.equals(name, admin.name);
+        Category category = (Category) o;
+        return id == category.id
+            && Objects.equals(name, category.name);
     }
 
     @Override

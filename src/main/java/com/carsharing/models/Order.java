@@ -47,28 +47,56 @@ public class Order {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getIdCar() {
         return idCar;
+    }
+
+    public void setIdCar(long idCar) {
+        this.idCar = idCar;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public double getAmountPrice() {
         return amountPrice;
+    }
+
+    public void setAmountPrice(double amountPrice) {
+        this.amountPrice = amountPrice;
     }
 
     public LocalDateTime getRentalDate() {
         return rentalDate;
     }
 
+    public void setRentalDate(LocalDateTime rentalDate) {
+        this.rentalDate = rentalDate;
+    }
+
     public LocalDateTime getReturnDate() {
         return returnDate;
     }
 
+    public void setReturnDate(LocalDateTime returnDate) {
+        this.returnDate = returnDate;
+    }
+
     public long getIdStatus() {
         return idStatus;
+    }
+
+    public void setIdStatus(long idStatus) {
+        this.idStatus = idStatus;
     }
 
     @Override
