@@ -1,6 +1,6 @@
 package com.carsharing.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Order {
@@ -12,9 +12,9 @@ public class Order {
 
     private double amountPrice;
 
-    private Date rentalDate;
+    private LocalDateTime rentalDate;
 
-    private Date returnDate;
+    private LocalDateTime returnDate;
 
     private long idStatus;
 
@@ -26,8 +26,8 @@ public class Order {
         long idCar,
         String email,
         double amountPrice,
-        Date rentalDate,
-        Date returnDate,
+        LocalDateTime rentalDate,
+        LocalDateTime returnDate,
         long idStatus
     ) {
         this.id = id;
@@ -55,11 +55,11 @@ public class Order {
         return amountPrice;
     }
 
-    public Date getRentalDate() {
+    public LocalDateTime getRentalDate() {
         return rentalDate;
     }
 
-    public Date getReturnDate() {
+    public LocalDateTime getReturnDate() {
         return returnDate;
     }
 
