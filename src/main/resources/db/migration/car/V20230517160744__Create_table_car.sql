@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `car`
     `year`        YEAR          NOT NULL,
     `price`       DECIMAL(6, 2) NOT NULL,
     `id_category` INT(11)       NOT NULL,
-    `plate`       VARCHAR(10)   NOT NULL,
+    `plate`       VARCHAR(10)   NOT NULL UNIQUE,
     `available`   TINYINT(1)    NOT NULL,
     `image`       LONGBLOB,
     PRIMARY KEY (`id`),
