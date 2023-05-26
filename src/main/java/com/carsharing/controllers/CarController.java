@@ -1,36 +1,53 @@
 package com.carsharing.controllers;
 
-import com.carsharing.repositories.CarRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.carsharing.models.Car;
+import com.carsharing.services.CarService;
+import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
+import java.util.List;
 
-@Controller
-@RequestMapping("/car")
+@RestController
+@CrossOrigin
+@RequestMapping("/api/v1/cars")
 public class CarController {
+    private final CarService carService;
 
-    private CarRepository carRepository;
-
-    @Autowired
-    public CarController(CarRepository carRepository) {
-        this.carRepository = carRepository;
+    public CarController(
+        CarService carService
+    ) {
+        this.carService = carService;
     }
 
-    @GetMapping()
-    public String index(Model model) throws SQLException {
-        model.addAttribute("cars", carRepository.index());
-        return "car/index";
+    @GetMapping("/")
+    public List<Car> findAll() {
+        return carService.findAll();
     }
 
-    @GetMapping("{id}")
-    public String show(@PathVariable("id") int id, Model model) throws SQLException {
-        model.addAttribute("car", carRepository.show(id));
-        return "car/show";
+    @GetMapping("/{id}")
+    public Car findById(@PathVariable long id) {
+        return carService.findById(id);
     }
 
+    @PostMapping("/")
+    public Car save(@RequestBody Car car) {
+        return carService.save(car);
+    }
+
+    @PutMapping("/{id}")
+    public Car update(
+        @PathVariable long id,
+        @RequestBody Car car
+    ) {
+        return carService.update(id, car);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id) {
+        carService.delete(new Car(id));
+    }
+
+    @GetMapping("/{plate}")
+    public Car findByPlate(@PathVariable String plate) {
+        return carService.findByPlate(plate);
+    }
 }
