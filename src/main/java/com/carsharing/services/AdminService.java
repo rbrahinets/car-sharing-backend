@@ -35,7 +35,8 @@ public class AdminService {
         return admin;
     }
 
-    public Admin update(Admin admin, long id) {
+    public Admin update(long id, Admin admin) {
+        adminValidator.validate(id, adminRepository.findAll());
         adminValidator.validate(admin, adminRepository.findAll());
         adminRepository.update(id, admin);
         return admin;
