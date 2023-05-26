@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Car {
-    private int id;
+    private long id;
     private String brand;
     private String model;
     private int year;
     private double price;
-    private int idCategory;
+    private long idCategory;
     private String plate;
     private boolean available;
     private byte[] image;
@@ -18,12 +18,12 @@ public class Car {
     }
 
     public Car(
-        int id,
+        long id,
         String brand,
         String model,
         int year,
         double price,
-        int idCategory,
+        long idCategory,
         String plate,
         boolean available,
         byte[] image
@@ -39,7 +39,7 @@ public class Car {
         this.image = image;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -59,7 +59,7 @@ public class Car {
         return price;
     }
 
-    public int getIdCategory() {
+    public long getIdCategory() {
         return idCategory;
     }
 

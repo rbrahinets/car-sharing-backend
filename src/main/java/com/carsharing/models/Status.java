@@ -3,21 +3,21 @@ package com.carsharing.models;
 import java.util.Objects;
 
 public class Status {
-    private int id;
+    private long id;
     private String name;
 
     public Status() {
     }
 
     public Status(
-        int id,
+        long id,
         String name
     ) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

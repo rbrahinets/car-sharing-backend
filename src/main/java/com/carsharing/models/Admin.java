@@ -1,23 +1,24 @@
 package com.carsharing.models;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Admin {
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
+    private char[] password;
 
     public Admin() {
     }
 
     public Admin(
-        int id,
+        long id,
         String firstName,
         String lastName,
         String email,
-        String password
+        char[] password
     ) {
         this.id = id;
         this.firstName = firstName;
@@ -26,7 +27,7 @@ public class Admin {
         this.password = password;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -42,7 +43,7 @@ public class Admin {
         return email;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
@@ -55,12 +56,12 @@ public class Admin {
             && Objects.equals(firstName, admin.firstName)
             && Objects.equals(lastName, admin.lastName)
             && Objects.equals(email, admin.email)
-            && Objects.equals(password, admin.password);
+            && Arrays.equals(password, admin.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password);
+        return Objects.hash(id, firstName, lastName, email, Arrays.hashCode(password));
     }
 
     @Override

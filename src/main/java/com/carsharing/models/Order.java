@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Order {
-    private int id;
+    private long id;
 
-    private int idCar;
+    private long idCar;
 
     private String email;
 
@@ -16,19 +16,19 @@ public class Order {
 
     private Date returnDate;
 
-    private int idStatus;
+    private long idStatus;
 
     public Order() {
     }
 
     public Order(
-        int id,
-        int idCar,
+        long id,
+        long idCar,
         String email,
         double amountPrice,
         Date rentalDate,
         Date returnDate,
-        int idStatus
+        long idStatus
     ) {
         this.id = id;
         this.idCar = idCar;
@@ -39,11 +39,11 @@ public class Order {
         this.idStatus = idStatus;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public int getIdCar() {
+    public long getIdCar() {
         return idCar;
     }
 
@@ -63,7 +63,7 @@ public class Order {
         return returnDate;
     }
 
-    public int getIdStatus() {
+    public long getIdStatus() {
         return idStatus;
     }
 
