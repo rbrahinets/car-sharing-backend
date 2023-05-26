@@ -24,7 +24,7 @@ public class AdminController {
     }
 
     @GetMapping("/{id}")
-    public Admin findById(@PathVariable Long id) {
+    public Admin findById(@PathVariable long id) {
         return adminService.findById(id);
     }
 
@@ -34,8 +34,11 @@ public class AdminController {
     }
 
     @PutMapping("/{id}")
-    public Admin update(@RequestBody Admin admin, @PathVariable Long id) {
-        return adminService.update(admin, id);
+    public Admin update(
+        @PathVariable long id,
+        @RequestBody Admin admin
+    ) {
+        return adminService.update(id, admin);
     }
 
     @DeleteMapping("/{id}")
