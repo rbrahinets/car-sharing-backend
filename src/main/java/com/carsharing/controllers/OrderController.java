@@ -18,7 +18,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Order> findAll() {
         return orderService.findAll();
     }
@@ -28,7 +28,7 @@ public class OrderController {
         return orderService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Order save(@RequestBody Order order) {
         return orderService.save(order);
     }
@@ -43,7 +43,7 @@ public class OrderController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        orderService.delete(new Order(id));
+        orderService.delete(id);
     }
 
     @GetMapping("/{email}")

@@ -18,7 +18,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Category> findAll() {
         return categoryService.findAll();
     }
@@ -28,7 +28,7 @@ public class CategoryController {
         return categoryService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Category save(@RequestBody Category category) {
         return categoryService.save(category);
     }
@@ -46,7 +46,7 @@ public class CategoryController {
         categoryService.delete(new Category(id));
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public Category findByName(@PathVariable String name) {
         return categoryService.findByName(name);
     }

@@ -18,7 +18,7 @@ public class StatusController {
         this.statusService = statusService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Status> findAll() {
         return statusService.findAll();
     }
@@ -28,7 +28,7 @@ public class StatusController {
         return statusService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Status save(@RequestBody Status status) {
         return statusService.save(status);
     }
@@ -46,7 +46,7 @@ public class StatusController {
         statusService.delete(new Status(id));
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public Status findByName(@PathVariable String name) {
         return statusService.findByName(name);
     }

@@ -18,7 +18,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Admin> findAll() {
         return adminService.findAll();
     }
@@ -28,7 +28,7 @@ public class AdminController {
         return adminService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Admin save(@RequestBody Admin admin) {
         return adminService.save(admin);
     }
@@ -46,7 +46,7 @@ public class AdminController {
         adminService.delete(new Admin(id));
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public Admin findByEmail(@PathVariable String email) {
         return adminService.findByEmail(email);
     }

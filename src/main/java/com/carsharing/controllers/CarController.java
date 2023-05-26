@@ -18,7 +18,7 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Car> findAll() {
         return carService.findAll();
     }
@@ -28,7 +28,7 @@ public class CarController {
         return carService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Car save(@RequestBody Car car) {
         return carService.save(car);
     }
@@ -46,7 +46,7 @@ public class CarController {
         carService.delete(new Car(id));
     }
 
-    @GetMapping("/{plate}")
+    @GetMapping("/plate/{plate}")
     public Car findByPlate(@PathVariable String plate) {
         return carService.findByPlate(plate);
     }
