@@ -9,15 +9,11 @@ public class Status {
     public Status() {
     }
 
-    public Status(long id) {
-        this.id = id;
-    }
-
     public Status(
         long id,
         String name
     ) {
-        this(id);
+        this.id = id;
         this.name = name;
     }
 

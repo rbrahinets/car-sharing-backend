@@ -13,10 +13,6 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(long id) {
-        this.id = id;
-    }
-
     public Admin(
         long id,
         String firstName,
@@ -24,7 +20,7 @@ public class Admin {
         String email,
         char[] password
     ) {
-        this(id);
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
