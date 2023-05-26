@@ -45,10 +45,8 @@ public class CarValidator {
     }
 
     public void validate(String plate, List<Car> cars) {
-        if (isInvalidPlate(plate)) {
-            throw new ValidationException("Plate is invalid");
-        } else if (isPlateAlreadyInUse(plate, cars)) {
-            throw new ValidationException("Plate is already in use");
+        if (!getPlates(cars).contains(plate)) {
+            throw new NotFoundException("Car not found");
         }
     }
 
@@ -86,16 +84,19 @@ public class CarValidator {
     }
 
     private boolean isPlateAlreadyInUse(String plate, List<Car> cars) {
+        return getPlates(cars).contains(plate);
+    }
+
+    private static boolean isImageInvalid(byte[] image) {
+        return image.length == 0;
+    }
+
+    private static List<String> getPlates(List<Car> cars) {
         List<String> plates = new ArrayList<>();
 
         for (Car car : cars) {
             plates.add(car.getPlate());
         }
-
-        return plates.contains(plate);
-    }
-
-    private static boolean isImageInvalid(byte[] image) {
-        return image.length == 0;
+        return plates;
     }
 }
