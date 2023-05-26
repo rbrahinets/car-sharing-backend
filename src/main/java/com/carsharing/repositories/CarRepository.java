@@ -2,50 +2,89 @@ package com.carsharing.repositories;
 
 import com.carsharing.models.Car;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
-@Component
+@Repository
 public class CarRepository {
-
-    private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    public CarRepository(JdbcTemplate jdbcTemplate) {
+    public CarRepository(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Car> index() throws SQLException {
-        return jdbcTemplate.query("SELECT * FROM Car", new CarMapper());
+    public List<Car> findAll() {
+        return jdbcTemplate.query(
+            "SELECT * FROM `car`",
+            new BeanPropertyRowMapper<>(Car.class)
+        );
     }
 
-    public Car show(int id) throws SQLException{
-        return jdbcTemplate.query("SELECT * FROM car WHERE id_car=?", new Object[]{id},
-                new CarMapper()).stream().findAny().orElse(null);
+    public Optional<Car> findById(long id) {
+        return jdbcTemplate.query(
+                "SELECT * FROM `car` WHERE id=:id",
+                Map.ofEntries(Map.entry("id", id)),
+                new BeanPropertyRowMapper<>(Car.class)
+            )
+            .stream().findAny();
     }
 
-    public void addCar(Car car){
-        jdbcTemplate.update("INSERT INTO car(Id_admin, brand, Model, Issue_date, price, id_category, Plate, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                car.getId_admin(), car.getBrand(), car.getModel(),
-                car.getIssue_date(), car.getPrice(), car.getId_category(),
-                car.getPlate(), car.getURLImage());
+    public void save(Car car) {
+        jdbcTemplate.update(
+            "INSERT INTO `car` (brand, model, year, price, id_category, plate, image)"
+                + " VALUES (:brand, :model, :year, :price, :id_category, :plate, :available, :image)",
+            Map.ofEntries(
+                Map.entry("brand", car.getBrand()),
+                Map.entry("model", car.getModel()),
+                Map.entry("year", car.getYear()),
+                Map.entry("price", car.getPrice()),
+                Map.entry("id_category", car.getIdCategory()),
+                Map.entry("plate", car.getPlate()),
+                Map.entry("available", car.isAvailable()),
+                Map.entry("image", car.getImage())
+            )
+        );
     }
 
-    public void updateCar(int id, Car car){
-        jdbcTemplate.update("UPDATE car SET Id_admin = ?, brand = ?, " +
-                        "Model = ?, Issue_date = ?, price = ?, id_category =? , Plate = ?, " +
-                        "Aveliable = ?, Damage = ?, image = ? WHERE id_car = ?",
-                car.getId_admin(), car.getBrand(), car.getModel(),
-                car.getIssue_date(), car.getPrice(), car.getId_category(),
-                car.getPlate(), car.isAveliable(), car.isDamage(),
-                car.getURLImage(), id);
+    public void update(long id, Car car) {
+        jdbcTemplate.update(
+            "UPDATE `car`" +
+                " SET brand=:brand, model=:model, year=:year, price=:price," +
+                " id_category=:id_category, plate:=plate, available=:avaliable, image:=image" +
+                " WHERE id=:id",
+            Map.ofEntries(
+                Map.entry("brand", car.getBrand()),
+                Map.entry("model", car.getModel()),
+                Map.entry("year", car.getYear()),
+                Map.entry("price", car.getPrice()),
+                Map.entry("id_category", car.getIdCategory()),
+                Map.entry("plate", car.getPlate()),
+                Map.entry("available", car.isAvailable()),
+                Map.entry("image", car.getImage()),
+                Map.entry("id", id)
+            )
+        );
     }
 
-    public void deleteCar(int id){
-        jdbcTemplate.update("DELETE FROM car WHERE id_car = ?", id);
+    public void delete(Car car) {
+        jdbcTemplate.update(
+            "DELETE FROM `car` WHERE id=:id",
+            Map.ofEntries(Map.entry("id", car.getId()))
+        );
     }
 
+    public Optional<Car> findByPlate(String plate) {
+        return jdbcTemplate.query(
+                "SELECT * FROM `car` WHERE plate=:plate",
+                Map.ofEntries(Map.entry("plate", plate)),
+                new BeanPropertyRowMapper<>(Car.class)
+            )
+            .stream().findAny();
+    }
 }
