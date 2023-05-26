@@ -29,14 +29,16 @@ public class AdminService {
         return adminRepository.findById(id).orElseThrow();
     }
 
-    public void save(Admin admin) {
+    public Admin save(Admin admin) {
         adminValidator.validate(admin, adminRepository.findAll());
         adminRepository.save(admin);
+        return admin;
     }
 
-    public void update(Admin admin, long id) {
+    public Admin update(Admin admin, long id) {
         adminValidator.validate(admin, adminRepository.findAll());
         adminRepository.update(id, admin);
+        return admin;
     }
 
     public void delete(Admin admin) {
