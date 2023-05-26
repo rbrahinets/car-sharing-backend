@@ -37,10 +37,8 @@ public class AdminValidator {
     }
 
     public void validate(String email, List<Admin> admins) {
-        if (isInvalidEmail(email)) {
-            throw new ValidationException("E-mail is invalid");
-        } else if (isEmailAlreadyInUse(email, admins)) {
-            throw new ValidationException("E-mail is already in use");
+        if (!getEmails(admins).contains(email)) {
+            throw new NotFoundException("Admin not found");
         }
     }
 
@@ -62,17 +60,21 @@ public class AdminValidator {
     }
 
     private boolean isEmailAlreadyInUse(String email, List<Admin> admins) {
+        return getEmails(admins).contains(email);
+    }
+
+    private static boolean isPasswordInvalid(char[] password) {
+        return password == null
+            || password.length == 0;
+    }
+
+    private static List<String> getEmails(List<Admin> admins) {
         List<String> emails = new ArrayList<>();
 
         for (Admin admin : admins) {
             emails.add(admin.getEmail());
         }
 
-        return emails.contains(email);
-    }
-
-    private static boolean isLastPasswordInvalid(char[] password) {
-        return password == null
-            || password.length == 0;
+        return emails;
     }
 }
