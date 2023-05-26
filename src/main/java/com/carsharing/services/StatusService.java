@@ -42,9 +42,9 @@ public class StatusService {
         return status;
     }
 
-    public void delete(Status status) {
-        statusValidator.validate(status, statusRepository.findAll());
-        statusRepository.delete(status);
+    public void delete(long id) {
+        statusValidator.validate(id, statusRepository.findAll());
+        statusRepository.delete(id);
     }
 
     public Status findByName(String name) {

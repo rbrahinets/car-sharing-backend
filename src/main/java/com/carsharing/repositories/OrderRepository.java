@@ -68,10 +68,10 @@ public class OrderRepository {
         );
     }
 
-    public void delete(Order order) {
+    public void delete(long id) {
         jdbcTemplate.update(
             "DELETE FROM `order` WHERE id=:id",
-            Map.ofEntries(Map.entry("id", order.getId()))
+            Map.ofEntries(Map.entry("id", id))
         );
     }
 

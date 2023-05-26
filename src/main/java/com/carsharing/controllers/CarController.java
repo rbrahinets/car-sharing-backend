@@ -43,7 +43,7 @@ public class CarController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        carService.delete(new Car(id));
+        carService.delete(id);
     }
 
     @GetMapping("/plate/{plate}")

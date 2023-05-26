@@ -46,7 +46,7 @@ public class OrderController {
         orderService.delete(id);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public Order findByEmail(@PathVariable String email) {
         return orderService.findByEmail(email);
     }

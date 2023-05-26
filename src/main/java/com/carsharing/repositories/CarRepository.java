@@ -72,10 +72,10 @@ public class CarRepository {
         );
     }
 
-    public void delete(Car car) {
+    public void delete(long id) {
         jdbcTemplate.update(
             "DELETE FROM `car` WHERE id=:id",
-            Map.ofEntries(Map.entry("id", car.getId()))
+            Map.ofEntries(Map.entry("id", id))
         );
     }
 

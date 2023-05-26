@@ -42,9 +42,9 @@ public class AdminService {
         return admin;
     }
 
-    public void delete(Admin admin) {
-        adminValidator.validate(admin, adminRepository.findAll());
-        adminRepository.delete(admin);
+    public void delete(long id) {
+        adminValidator.validate(id, adminRepository.findAll());
+        adminRepository.delete(id);
     }
 
     public Admin findByEmail(String email) {

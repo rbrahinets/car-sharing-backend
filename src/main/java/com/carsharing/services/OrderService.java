@@ -60,14 +60,9 @@ public class OrderService {
         return order;
     }
 
-    public void delete(Order order) {
-        orderValidator.validate(
-            order,
-            orderRepository.findAll(),
-            carRepository.findAll(),
-            statusRepository.findAll()
-        );
-        orderRepository.delete(order);
+    public void delete(long id) {
+        orderValidator.validate(id, orderRepository.findAll());
+        orderRepository.delete(id);
     }
 
     public Order findByEmail(String email) {

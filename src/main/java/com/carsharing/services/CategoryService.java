@@ -42,9 +42,9 @@ public class CategoryService {
         return category;
     }
 
-    public void delete(Category category) {
-        categoryValidator.validate(category, categoryRepository.findAll());
-        categoryRepository.delete(category);
+    public void delete(long id) {
+        categoryValidator.validate(id, categoryRepository.findAll());
+        categoryRepository.delete(id);
     }
 
     public Category findByName(String name) {

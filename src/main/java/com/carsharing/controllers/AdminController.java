@@ -43,7 +43,7 @@ public class AdminController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        adminService.delete(new Admin(id));
+        adminService.delete(id);
     }
 
     @GetMapping("/email/{email}")

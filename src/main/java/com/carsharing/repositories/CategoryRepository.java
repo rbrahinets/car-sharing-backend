@@ -52,10 +52,10 @@ public class CategoryRepository {
         );
     }
 
-    public void delete(Category category) {
+    public void delete(long id) {
         jdbcTemplate.update(
             "DELETE FROM `category` WHERE id=:id",
-            Map.ofEntries(Map.entry("id", category.getId()))
+            Map.ofEntries(Map.entry("id", id))
         );
     }
 

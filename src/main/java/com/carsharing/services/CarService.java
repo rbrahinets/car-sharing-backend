@@ -54,13 +54,9 @@ public class CarService {
         return car;
     }
 
-    public void delete(Car car) {
-        carValidator.validate(
-            car,
-            carRepository.findAll(),
-            categoryRepository.findAll()
-        );
-        carRepository.delete(car);
+    public void delete(long id) {
+        carValidator.validate(id, carRepository.findAll());
+        carRepository.delete(id);
     }
 
     public Car findByPlate(String plate) {

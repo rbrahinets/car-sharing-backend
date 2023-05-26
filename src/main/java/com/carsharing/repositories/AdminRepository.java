@@ -63,10 +63,10 @@ public class AdminRepository {
         );
     }
 
-    public void delete(Admin admin) {
+    public void delete(long id) {
         jdbcTemplate.update(
             "DELETE FROM `admin` WHERE id=:id",
-            Map.ofEntries(Map.entry("id", admin.getId()))
+            Map.ofEntries(Map.entry("id", id))
         );
     }
 

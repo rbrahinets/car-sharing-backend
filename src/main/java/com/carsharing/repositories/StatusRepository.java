@@ -52,10 +52,10 @@ public class StatusRepository {
         );
     }
 
-    public void delete(Status status) {
+    public void delete(long id) {
         jdbcTemplate.update(
             "DELETE FROM `status` WHERE id=:id",
-            Map.ofEntries(Map.entry("id", status.getId()))
+            Map.ofEntries(Map.entry("id", id))
         );
     }
 
