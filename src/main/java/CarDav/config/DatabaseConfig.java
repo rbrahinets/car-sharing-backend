@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource("classpath:database.properties")
+@PropertySource("classpath:database-lock.properties")
 public class DatabaseConfig {
     @Bean
     public DataSource dataSource(
