@@ -40,6 +40,7 @@ public class OrderService {
     public Order save(Order order) {
         orderValidator.validate(
             order,
+            orderRepository.findAll(),
             carRepository.findAll(),
             statusRepository.findAll()
         );
@@ -49,11 +50,6 @@ public class OrderService {
 
     public Order update(long id, Order order) {
         orderValidator.validate(id, orderRepository.findAll());
-        orderValidator.validate(
-            order,
-            carRepository.findAll(),
-            statusRepository.findAll()
-        );
         orderRepository.update(id, order);
         return order;
     }

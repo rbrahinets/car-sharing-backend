@@ -30,14 +30,13 @@ public class AdminService {
     }
 
     public Admin save(Admin admin) {
-        adminValidator.validate(admin, adminRepository.findAll(), true);
+        adminValidator.validate(admin, adminRepository.findAll());
         adminRepository.save(admin);
         return admin;
     }
 
     public Admin update(long id, Admin admin) {
         adminValidator.validate(id, adminRepository.findAll());
-        adminValidator.validate(admin, adminRepository.findAll(), false);
         adminRepository.update(id, admin);
         return admin;
     }

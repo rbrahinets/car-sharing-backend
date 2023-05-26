@@ -13,16 +13,19 @@ import java.util.List;
 
 @Component
 public class OrderValidator {
-    public void validate(Order order, List<Car> cars, List<Status> statuses) {
+    public void validate(Order order, List<Order> orders, List<Car> cars, List<Status> statuses) {
         if (isInvalidIdCar(order.getIdCar(), cars)) {
             throw new ValidationException("Id of car is invalid");
+        } else if (isCarAlreadyInUse(order.getIdCar(), orders)) {
+            throw new ValidationException("Car is already in use");
         } else if (isInvalidEmail(order.getEmail())) {
             throw new ValidationException("E-mail is invalid");
         } else if (isAmountPriceInvalid(order.getAmountPrice())) {
             throw new ValidationException("Amount price is invalid");
         } else if (isRentalDateInvalid(order.getRentalDate())) {
             throw new ValidationException("Rental date is invalid");
-        } else if (isReturnDateInvalid(order.getReturnDate())) {
+        } else if (isReturnDateInvalid(order.getReturnDate())
+            || order.getReturnDate().isBefore(order.getRentalDate())) {
             throw new ValidationException("Return date is invalid");
         } else if (isInvalidIdStatus(order.getIdStatus(), statuses)) {
             throw new ValidationException("Id of status is invalid");
@@ -55,6 +58,16 @@ public class OrderValidator {
         }
 
         return !ids.contains(id);
+    }
+
+    private boolean isCarAlreadyInUse(long id, List<Order> orders) {
+        List<Long> ids = new ArrayList<>();
+
+        for (Order order : orders) {
+            ids.add(order.getIdCar());
+        }
+
+        return ids.contains(id);
     }
 
     private boolean isInvalidEmail(String email) {

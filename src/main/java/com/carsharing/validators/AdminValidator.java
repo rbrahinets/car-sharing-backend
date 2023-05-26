@@ -10,14 +10,14 @@ import java.util.List;
 
 @Component
 public class AdminValidator {
-    public void validate(Admin admin, List<Admin> admins, boolean isSaveMethod) {
+    public void validate(Admin admin, List<Admin> admins) {
         if (isFirstNameInvalid(admin.getFirstName())) {
             throw new ValidationException("First name is invalid");
         } else if (isLastNameInvalid(admin.getLastName())) {
             throw new ValidationException("Last name is invalid");
         } else if (isInvalidEmail(admin.getEmail())) {
             throw new ValidationException("E-mail is invalid");
-        } else if (isSaveMethod && isEmailAlreadyInUse(admin.getEmail(), admins)) {
+        } else if (isEmailAlreadyInUse(admin.getEmail(), admins)) {
             throw new ValidationException("E-mail is already in use");
         } else if (isPasswordInvalid(admin.getPassword())) {
             throw new ValidationException("Password is invalid");
