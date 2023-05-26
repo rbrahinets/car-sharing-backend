@@ -13,7 +13,7 @@ public class StatusValidator {
     public void validate(Status status, List<Status> statuses) {
         if (isNameInvalid(status.getName())) {
             throw new ValidationException("Name is invalid");
-        } else if (isNameAlreadyExist(status.getName(), statuses)) {
+        } else if (isNameAlreadyExists(status.getName(), statuses)) {
             throw new ValidationException("Name already exist");
         }
     }
@@ -41,7 +41,7 @@ public class StatusValidator {
             || name.isBlank();
     }
 
-    private boolean isNameAlreadyExist(String name, List<Status> statuses) {
+    private boolean isNameAlreadyExists(String name, List<Status> statuses) {
         return getNames(statuses).contains(name);
     }
 
