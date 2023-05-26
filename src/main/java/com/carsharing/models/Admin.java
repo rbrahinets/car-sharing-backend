@@ -1,89 +1,75 @@
 package com.carsharing.models;
 
-import java.util.Date;
+import java.util.Objects;
 
 public class Admin {
-    private int id_admin;
-
-    private String surname;
-
-    private String name;
-
+    private int id;
+    private String firstName;
+    private String lastName;
     private String email;
-
-    private String keyword;
-
-    private Date authorization;
-    private String image;
+    private String password;
 
     public Admin() {
     }
 
-    public Admin(int id_admin, String surname, String name,
-                 String email, String keyword,
-                 Date authorization, String image) {
-        this.id_admin = id_admin;
-        this.surname = surname;
-        this.name = name;
+    public Admin(
+        int id,
+        String firstName,
+        String lastName,
+        String email,
+        String password
+    ) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.keyword = keyword;
-        this.authorization = authorization;
-        this.image = image;
+        this.password = password;
     }
 
-    public int getId_admin() {
-        return id_admin;
+    public int getId() {
+        return id;
     }
 
-    public void setId_admin(int id_admin) {
-        this.id_admin = id_admin;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getPassword() {
+        return password;
     }
 
-    public String getKeyword() {
-        return keyword;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Admin admin = (Admin) o;
+        return id == admin.id
+            && Objects.equals(firstName, admin.firstName)
+            && Objects.equals(lastName, admin.lastName)
+            && Objects.equals(email, admin.email)
+            && Objects.equals(password, admin.password);
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, password);
     }
 
-    public Date getAuthorization() {
-        return authorization;
-    }
-
-    public void setAuthorization(Date authorization) {
-        this.authorization = authorization;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
+    @Override
+    public String toString() {
+        return "Admin{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", email='" + email + '\'' +
+            '}';
     }
 }
