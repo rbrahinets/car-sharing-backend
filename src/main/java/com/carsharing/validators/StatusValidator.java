@@ -30,18 +30,27 @@ public class StatusValidator {
         }
     }
 
+    public void validate(String name, List<Status> statuses) {
+        if (!getNames(statuses).contains(name)) {
+            throw new NotFoundException("Status not found");
+        }
+    }
+
     private static boolean isNameInvalid(String name) {
         return name == null
             || name.isBlank();
     }
 
     private boolean isNameAlreadyExist(String name, List<Status> statuses) {
+        return getNames(statuses).contains(name);
+    }
+
+    private static List<String> getNames(List<Status> statuses) {
         List<String> names = new ArrayList<>();
 
         for (Status status : statuses) {
             names.add(status.getName());
         }
-
-        return names.contains(name);
+        return names;
     }
 }
