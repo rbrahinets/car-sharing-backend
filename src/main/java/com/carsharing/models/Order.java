@@ -21,6 +21,10 @@ public class Order {
     public Order() {
     }
 
+    public Order(long id) {
+        this.id = id;
+    }
+
     public Order(
         long id,
         long idCar,
@@ -30,7 +34,7 @@ public class Order {
         LocalDateTime returnDate,
         long idStatus
     ) {
-        this.id = id;
+        this(id);
         this.idCar = idCar;
         this.email = email;
         this.amountPrice = amountPrice;

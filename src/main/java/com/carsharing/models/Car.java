@@ -17,6 +17,10 @@ public class Car {
     public Car() {
     }
 
+    public Car(long id) {
+        this.id = id;
+    }
+
     public Car(
         long id,
         String brand,
@@ -28,7 +32,7 @@ public class Car {
         boolean available,
         byte[] image
     ) {
-        this.id = id;
+        this(id);
         this.brand = brand;
         this.model = model;
         this.year = year;
