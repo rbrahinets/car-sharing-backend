@@ -13,7 +13,7 @@ public class CategoryValidator {
     public void validate(Category category, List<Category> categories) {
         if (isNameInvalid(category.getName())) {
             throw new ValidationException("Name is invalid");
-        } else if (isNameAlreadyExist(category.getName(), categories)) {
+        } else if (isNameAlreadyExists(category.getName(), categories)) {
             throw new ValidationException("Name already exist");
         }
     }
@@ -41,7 +41,7 @@ public class CategoryValidator {
             || name.isBlank();
     }
 
-    private boolean isNameAlreadyExist(String name, List<Category> categories) {
+    private boolean isNameAlreadyExists(String name, List<Category> categories) {
         return getNames(categories).contains(name);
     }
 
