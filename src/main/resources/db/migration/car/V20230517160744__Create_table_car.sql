@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS `car`
     `brand`       VARCHAR(50)   NOT NULL,
     `model`       VARCHAR(50)   NOT NULL,
     `year`        YEAR          NOT NULL,
-    `price`       DECIMAL(6, 2) NOT NULL,
+    `price`       DECIMAL(10, 2) NOT NULL,
     `id_category` INT(11)       NOT NULL,
     `plate`       VARCHAR(10)   NOT NULL UNIQUE,
     `available`   TINYINT(1)    NOT NULL,
