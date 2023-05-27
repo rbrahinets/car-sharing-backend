@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("http://localhost:5173")
 @RequestMapping("/api/v1/cars")
 public class CarController {
     private final CarService carService;
