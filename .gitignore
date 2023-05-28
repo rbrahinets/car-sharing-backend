@@ -1,3 +1,16 @@
+# Compiled class file
+*.class
+/out
+
+# IntelliJ IDEA files
 .idea
+*.iml
+
+# Maven files
 target
-src/main/resources/database.properties
+
+# Log file
+*.log
+
+# Local files
+*-lock.*

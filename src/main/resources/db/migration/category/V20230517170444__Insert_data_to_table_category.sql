@@ -1,4 +1,4 @@
-INSERT INTO `category` (`type`)
+INSERT INTO `category` (`name`)
 VALUES ('A'),
        ('A1'),
        ('B'),

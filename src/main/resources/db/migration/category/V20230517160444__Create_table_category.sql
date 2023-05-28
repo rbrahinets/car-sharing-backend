@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `category`
 (
     `id`   INT(11)    NOT NULL AUTO_INCREMENT,
-    `type` VARCHAR(2) NOT NULL UNIQUE,
+    `name` VARCHAR(2) NOT NULL UNIQUE,
     PRIMARY KEY (`id`)
 );
