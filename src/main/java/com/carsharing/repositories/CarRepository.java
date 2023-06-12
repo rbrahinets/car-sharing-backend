@@ -37,8 +37,10 @@ public class CarRepository {
 
     public void save(Car car) {
         jdbcTemplate.update(
-            "INSERT INTO `car` (brand, model, year, price, id_category, plate, available, image)"
-                + " VALUES (:brand, :model, :year, :price, :id_category, :plate, :available, :image)",
+            "INSERT INTO `car` (brand, model, year, price, id_category, plate, location_name, " +
+                "coordinates, available, id_admin, image)"
+                + " VALUES (:brand, :model, :year, :price, :id_category, :plate, :location_name, " +
+                ":coordinates, :available, :id_admin, :image)",
             Map.ofEntries(
                 Map.entry("brand", car.getBrand()),
                 Map.entry("model", car.getModel()),
@@ -46,7 +48,10 @@ public class CarRepository {
                 Map.entry("price", car.getPrice()),
                 Map.entry("id_category", car.getIdCategory()),
                 Map.entry("plate", car.getPlate()),
-                Map.entry("available", car.isAvailable() ? 1 : 0),
+                Map.entry("location_name", car.getLocationName()),
+                Map.entry("coordinates", car.getCoordinates()),
+                Map.entry("available", car.getAvailable()),
+                Map.entry("id_admin", car.getIdAdmin()),
                 Map.entry("image", car.getImage())
             )
         );
@@ -56,7 +61,8 @@ public class CarRepository {
         jdbcTemplate.update(
             "UPDATE `car`" +
                 " SET brand=:brand, model=:model, year=:year, price=:price," +
-                " id_category=:id_category, plate:=plate, available=:available, image:=image" +
+                " id_category=:id_category, plate=:plate, location_name=:location_name," +
+                " coordinates=:coordinates, available=:available, id_admin=:id_admin, image=:image" +
                 " WHERE id=:id",
             Map.ofEntries(
                 Map.entry("brand", car.getBrand()),
@@ -65,7 +71,10 @@ public class CarRepository {
                 Map.entry("price", car.getPrice()),
                 Map.entry("id_category", car.getIdCategory()),
                 Map.entry("plate", car.getPlate()),
-                Map.entry("available", car.isAvailable() ? 1 : 0),
+                Map.entry("location_name", car.getLocationName()),
+                Map.entry("coordinates", car.getCoordinates()),
+                Map.entry("available", car.getAvailable()),
+                Map.entry("id_admin", car.getIdAdmin()),
                 Map.entry("image", car.getImage()),
                 Map.entry("id", id)
             )
