@@ -11,7 +11,10 @@ public class Car {
     private double price;
     private long idCategory;
     private String plate;
-    private boolean available;
+    private String locationName;
+    private String coordinates;
+    private byte available;
+    private long idAdmin;
     private byte[] image;
 
     public Car() {
@@ -25,7 +28,10 @@ public class Car {
         double price,
         long idCategory,
         String plate,
-        boolean available,
+        String locationName,
+        String coordinates,
+        byte available,
+        long idAdmin,
         byte[] image
     ) {
         this.id = id;
@@ -35,7 +41,10 @@ public class Car {
         this.price = price;
         this.idCategory = idCategory;
         this.plate = plate;
+        this.locationName = locationName;
+        this.coordinates = coordinates;
         this.available = available;
+        this.idAdmin = idAdmin;
         this.image = image;
     }
 
@@ -95,12 +104,36 @@ public class Car {
         this.plate = plate;
     }
 
-    public boolean isAvailable() {
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public byte getAvailable() {
         return available;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(byte available) {
         this.available = available;
+    }
+
+    public long getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(long idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
     public byte[] getImage() {
@@ -121,15 +154,19 @@ public class Car {
             && Double.compare(car.price, price) == 0
             && idCategory == car.idCategory
             && available == car.available
+            && idAdmin == car.idAdmin
             && Objects.equals(brand, car.brand)
             && Objects.equals(model, car.model)
             && Objects.equals(plate, car.plate)
+            && Objects.equals(locationName, car.locationName)
+            && Objects.equals(coordinates, car.coordinates)
             && Arrays.equals(image, car.image);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, brand, model, year, price, idCategory, plate, available);
+        int result = Objects.hash(id, brand, model, year, price, idCategory,
+            plate, locationName, coordinates, available, idAdmin);
         result = 31 * result + Arrays.hashCode(image);
         return result;
     }
@@ -144,7 +181,10 @@ public class Car {
             ", price=" + price +
             ", idCategory=" + idCategory +
             ", plate='" + plate + '\'' +
+            ", locationName='" + locationName + '\'' +
+            ", coordinates='" + coordinates + '\'' +
             ", available=" + available +
+            ", idAdmin=" + idAdmin +
             '}';
     }
 }
